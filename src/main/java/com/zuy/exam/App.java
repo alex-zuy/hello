@@ -1,13 +1,12 @@
 package com.zuy.exam;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackageClasses = {App.class})
+public class App {
+
 }
