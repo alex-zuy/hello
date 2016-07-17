@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table.data-list {
+            border-collapse: collapse;
+            width: 600px;
+        }
+        table.data-list td.centered {
+            text-align: center;
+        }
+        table.data-list td, table.data-list th {
+            border: 2px solid black;
+        }
+        .someClass {
+            background-color: black;
+        }
+        .form-field {
+            margin: 10px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>

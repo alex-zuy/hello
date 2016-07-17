@@ -1,0 +1,30 @@
+#* @vtlvariable name="users" type="java.util.List" *#
+#parse('parts/header.vm')
+<h2>Users list</h2>
+<form action="">
+    <table class="data-list">
+        <thead>
+        <tr>
+            <th>
+                <input type="checkbox" id="triggerAllCheckboxes">
+            </th>
+            <th>ID</th>
+            <th>Login</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+            #foreach($user in $users)
+            <tr>
+                <td class="centered">
+                    <input type="checkbox" name="user_ids[]" value="$user.id"/>
+                </td>
+                <td>$user.id</td>
+                <td>$user.login</td>
+                <td><a href="#">link</a></td>
+            </tr>
+            #end
+        </tbody>
+    </table>
+</form>
+#parse('parts/footer.vm')

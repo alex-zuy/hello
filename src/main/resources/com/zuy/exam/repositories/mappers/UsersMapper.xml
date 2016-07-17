@@ -3,7 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zuy.exam.repositories.mappers.UsersMapper">
-    <select id="selectUserById" parameterType="int" resultType="user">
-        select * from users where id = #{id}
+
+    <select id="selectUserById" resultType="user">
+        SELECT * FROM users WHERE id = #{id}
     </select>
+
+    <select id="selectUserByLogin" resultType="user">
+        SELECT * FROM users WHERE login = #{login}
+    </select>
+
+    <select id="selectUsers" resultType="user">
+        SELECT * FROM users
+    </select>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users(login, password_hash, role) VALUE (#{login}, #{passwordHash}, #{role})
+    </insert>
+
 </mapper>

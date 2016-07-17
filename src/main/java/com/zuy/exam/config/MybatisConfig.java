@@ -17,11 +17,8 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = "com.zuy.exam.repositories.mappers")
 public class MybatisConfig {
 
-    @Autowired
-    private DataSource dataSource;
-
     @Bean
-    public SqlSessionFactoryBean sqlSessionFactory() {
+    public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
         final org.apache.ibatis.session.Configuration configuration =
             new org.apache.ibatis.session.Configuration();
         configuration.setMapUnderscoreToCamelCase(true);
