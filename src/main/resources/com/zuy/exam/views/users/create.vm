@@ -1,4 +1,5 @@
 #parse('parts/header.vm')
+<h2>#springMessage("users.create.user")</h2>
 #set( $submitUrl = "/users/create")
 #parse('users/userDataForm.vm')
 #parse('parts/footer.vm')

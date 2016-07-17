@@ -1,7 +1,15 @@
+#* @vtlvariable name="hasAdminRole" type="boolean" *#
 #* @vtlvariable name="userName" type="java.lang.String" *#
 
-#springMessage("user.greeting")
-
+#parse('parts/header.vm')
+<h2>Hello, $userName</h2>
+<p/>
 #if($hasAdminRole)
 <a href="#springUrl("/users/")">#springMessage("common.manage.users")</a>
 #end
+
+<form action="#springUrl("/logout")" method="POST">
+    #parse('parts/csrfToken.vm')
+    <button type="submit">#springMessage("common.logout")</button>
+</form>
+#parse('parts/footer.vm')

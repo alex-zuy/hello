@@ -1,6 +1,9 @@
 #* @vtlvariable name="users" type="java.util.List" *#
 #parse('parts/header.vm')
 <h2>#springMessage("users.list")</h2>
+<p>
+    <a href="#springUrl("/")">#springMessage("common.action.home")</a>
+</p>
 <form id="deleteForm" action="#springUrl("/users/delete")" method="POST">
     #parse('parts/csrfToken.vm')
     <input type="hidden" name="user_ids[]" value="0">
@@ -32,9 +35,12 @@
             #end
         </tbody>
     </table>
+    <p/>
     <button type="button" name="delete">#springMessage("users.delete.selected")</button>
 </form>
-<a href="#springUrl("/users/create")">#springMessage("users.create.user")</a>
+<p>
+    <a href="#springUrl("/users/create")">#springMessage("users.create.user")</a>
+</p>
 <script>
     jQuery(function ($) {
         var confirmationMessage = "#springMessage("users.delete.selected.confirmation")";
