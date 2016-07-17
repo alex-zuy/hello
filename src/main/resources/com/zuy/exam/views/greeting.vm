@@ -1,3 +1,7 @@
 #* @vtlvariable name="userName" type="java.lang.String" *#
 
-Hello, $userName
+#springMessage("user.greeting")
+
+#if($hasAdminRole)
+<a href="#springUrl("/users/")">#springMessage("common.manage.users")</a>
+#end

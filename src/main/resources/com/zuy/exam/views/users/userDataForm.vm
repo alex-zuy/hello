@@ -1,0 +1,27 @@
+#* @vtlvariable name="submitUrl" type="java.lang.String" *#
+
+<form action="$submitUrl" method="POST">
+    #parse('parts/csrfToken.vm')
+    <div class="form-field">
+        <label for="login">#springMessage("common.login")</label>
+        #springFormInput("form.login" "")
+        <span class="error">
+            #springShowErrors("&nbsp;" "")
+        </span>
+    </div>
+    <div class="form-field">
+        <label for="password">#springMessage("common.password")</label>
+        #springFormPasswordInput("form.password" "")
+        <span class="error">
+            #springShowErrors("&nbsp;" "")
+        </span>
+    </div>
+    <div class="form-field">
+        <label for="passwordConfirm">#springMessage("common.confirmPassword")</label>
+        #springFormPasswordInput("form.passwordConfirm" "")
+        <span class="error">
+            #springShowErrors("&nbsp;" "")
+        </span>
+    </div>
+    <button type="submit">#springMessage("common.submit")</button>
+</form>

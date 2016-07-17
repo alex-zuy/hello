@@ -1,15 +1,15 @@
 #parse('parts/header.vm')
-<h2>Login</h2>
+<h2>#springMessage("common.action.login")</h2>
 <form action="" method="POST">
     #parse('parts/csrfToken.vm')
     <div class="form-field">
-        <label for="username">Login</label>
+        <label for="username">#springMessage("common.login")</label>
         <input type="text" name="username">
     </div>
     <div class="form-field">
-        <label for="password">Password</label>
+        <label for="password">#springMessage("common.password")</label>
         <input type="text" name="password">
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit">#springMessage("common.submit")</button>
 </form>
 #parse('parts/footer.vm')

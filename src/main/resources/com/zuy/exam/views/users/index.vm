@@ -1,16 +1,18 @@
 #* @vtlvariable name="users" type="java.util.List" *#
 #parse('parts/header.vm')
-<h2>Users list</h2>
-<form action="">
+<h2>#springMessage("users.list")</h2>
+<form id="deleteForm" action="#springUrl("/users/delete")" method="POST">
+    #parse('parts/csrfToken.vm')
+    <input type="hidden" name="user_ids[]" value="0">
     <table class="data-list">
         <thead>
         <tr>
             <th>
                 <input type="checkbox" id="triggerAllCheckboxes">
             </th>
-            <th>ID</th>
-            <th>Login</th>
-            <th>Edit</th>
+            <th>#springMessage("common.id")</th>
+            <th>#springMessage("common.login")</th>
+            <th>#springMessage("common.edit")</th>
         </tr>
         </thead>
         <tbody>
@@ -21,10 +23,35 @@
                 </td>
                 <td>$user.id</td>
                 <td>$user.login</td>
-                <td><a href="#">link</a></td>
+                <td>
+                    <a href="#springUrl("/users/$user.id/edit")">
+                        #springMessage("common.start.editing")
+                    </a>
+                </td>
             </tr>
             #end
         </tbody>
     </table>
+    <button type="button" name="delete">#springMessage("users.delete.selected")</button>
 </form>
+<a href="#springUrl("/users/create")">#springMessage("users.create.user")</a>
+<script>
+    jQuery(function ($) {
+        var confirmationMessage = "#springMessage("users.delete.selected.confirmation")";
+        var form = $('#deleteForm');
+        var triggerAllCheckbox = form.find('#triggerAllCheckboxes');
+        var deleteButton = form.find('button[name=delete]');
+
+        triggerAllCheckbox.click(function(e) {
+            var isChecked = triggerAllCheckbox.prop('checked');
+            form.find("tbody input[type=checkbox]").prop('checked', isChecked);
+        });
+
+        deleteButton.click(function() {
+            if(window.confirm(confirmationMessage)) {
+                form.submit();
+            }
+        });
+    });
+</script>
 #parse('parts/footer.vm')

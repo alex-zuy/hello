@@ -1,0 +1,4 @@
+#parse('parts/header.vm')
+#set( $submitUrl = "/users/$userId/edit")
+#parse('users/userDataForm.vm')
+#parse('parts/footer.vm')

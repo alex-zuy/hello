@@ -25,7 +25,19 @@ public class UsersRepository {
         return usersMapper.selectUserByLogin(login);
     }
 
-    public void storeUser(User user) {
+    public void createUser(User user) {
         usersMapper.insertUser(user);
+    }
+
+    public void updateUserLoginAndPassword(User user) {
+        usersMapper.updateUserLoginAndPasswordHash(user);
+    }
+
+    public void deleteUsers(int[] ids) {
+        usersMapper.deleteUsers(ids);
+    }
+
+    public boolean existsAnotherUserWithRole(int[] exceptIds, String role) {
+        return usersMapper.selectExistsAnotherUserWithRole(exceptIds, role);
     }
 }
