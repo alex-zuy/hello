@@ -1,5 +1,6 @@
 package com.zuy.exam.repositories;
 
+import com.zuy.exam.TestUtils;
 import com.zuy.exam.config.TestDatabaseConfig;
 import com.zuy.exam.config.MybatisConfig;
 import com.zuy.exam.entities.User;
@@ -15,7 +16,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {MybatisConfig.class, UsersRepository.class, TestDatabaseConfig.class})
-@Sql({"schema.sql", "insert_admin.sql"})
+@Sql({"/schema.sql", "/insert_admin.sql"})
 public class UsersRepositoryTest {
 
     @Autowired
@@ -30,7 +31,7 @@ public class UsersRepositoryTest {
 
     @Test
     public void testInsertUser() throws Exception {
-        final User newUser = createUser("new", "passwordHash", "role");
+        final User newUser = TestUtils.createUser("new", "passwordHash", "role");
         repository.createUser(newUser);
         assertNotNull(newUser.getId());
 
@@ -44,10 +45,10 @@ public class UsersRepositoryTest {
 
     @Test
     public void testUpdateUser() throws Exception {
-        final User oldUser = createUser("oldLogin", "oldPassword", "oldRole");
+        final User oldUser = TestUtils.createUser("oldLogin", "oldPassword", "oldRole");
         repository.createUser(oldUser);
 
-        final User newUser = createUser("newLogin", "newPassword", "newRole");
+        final User newUser = TestUtils.createUser("newLogin", "newPassword", "newRole");
         newUser.setId(oldUser.getId());
         repository.updateUserLoginAndPassword(newUser);
 
@@ -59,7 +60,7 @@ public class UsersRepositoryTest {
 
     @Test(expected = DuplicateKeyException.class)
     public void testUniqueLoginConstraint() throws Exception {
-        final User user = createUser("login", "password", "role");
+        final User user = TestUtils.createUser("login", "password", "role");
 
         repository.createUser(user);
         repository.createUser(user);
@@ -67,7 +68,7 @@ public class UsersRepositoryTest {
 
     @Test
     public void testDeleteUser() throws Exception {
-        final User user = createUser("login", "password", "role");
+        final User user = TestUtils.createUser("login", "password", "role");
 
         repository.createUser(user);
         assertNotNull(user.getId());
@@ -75,11 +76,4 @@ public class UsersRepositoryTest {
         assertNull(repository.getUser(user.getId()));
     }
 
-    private static User createUser(String login, String passwordHash, String role) {
-        final User user = new User();
-        user.setLogin(login);
-        user.setPasswordHash(passwordHash);
-        user.setRole(role);
-        return user;
-    }
 }

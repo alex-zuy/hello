@@ -27,6 +27,7 @@ public class TestDatabaseConfig {
         return hikariDataSource;
     }
 
+    @Primary
     @Bean
     public DataSourceTransactionManager dataSourceTransactionManager() {
         return  new DataSourceTransactionManager(testDataSource());
