@@ -16,9 +16,11 @@
         <java.version>1.8</java.version>
         <maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
         <maven.war.plugin.version>2.3</maven.war.plugin.version>
+        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <jetty.maven.plugin.version>9.4.0.M0</jetty.maven.plugin.version>
         <spring.version>4.3.1.RELEASE</spring.version>
         <spring.security.version>4.1.1.RELEASE</spring.security.version>
+        <mysql.jdbc.driver.version>5.1.39</mysql.jdbc.driver.version>
     </properties>
 
     <dependencies>
@@ -152,7 +154,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.19.1</version>
+                    <version>${maven.surefire.plugin.version}</version>
                     <configuration>
                         <systemPropertyVariables>
                             <databaseConnectionPropertiesFile>
@@ -187,12 +189,44 @@
                         <dependency>
                             <groupId>mysql</groupId>
                             <artifactId>mysql-connector-java</artifactId>
-                            <version>5.1.39</version>
+                            <version>${mysql.jdbc.driver.version}</version>
                         </dependency>
                         <dependency>
                             <groupId>com.zaxxer</groupId>
                             <artifactId>HikariCP</artifactId>
                             <version>2.4.7</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>properties-maven-plugin</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <files>
+                            <file>config/database.properties</file>
+                        </files>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>1.5</version>
+                    <configuration>
+                        <driver>com.mysql.jdbc.Driver</driver>
+                        <url>jdbc:mysql://localhost:3306/${dataSource.databaseName}</url>
+                        <username>${dataSource.user}</username>
+                        <password>${dataSource.password}</password>
+                        <srcFiles>
+                            <srcFile>${project.basedir}/src/test/resources/schema.sql</srcFile>
+                            <srcFile>${project.basedir}/src/test/resources/insert_admin.sql</srcFile>
+                        </srcFiles>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <version>${mysql.jdbc.driver.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
