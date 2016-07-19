@@ -1,6 +1,6 @@
 #* @vtlvariable name="submitUrl" type="java.lang.String" *#
 
-<form action="$submitUrl" method="POST">
+<form action="#springUrl($submitUrl)" method="POST">
     #parse('parts/csrfToken.vm')
     <div class="form-field">
         <label for="login">#springMessage("common.login")</label>
