@@ -19,5 +19,6 @@ public interface UsersMapper {
 
     void deleteUsers(@Param("user_ids") int[] ids);
 
-    boolean selectExistsAnotherUserWithRole(@Param("except_ids") int[] exceptIds, @Param("role") String role);
+    boolean selectExistsAnotherUserWithRole(
+        @Param("except_ids") int[] exceptIds, @Param("role") String role);
 }

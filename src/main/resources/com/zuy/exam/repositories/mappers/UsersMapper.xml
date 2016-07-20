@@ -30,7 +30,7 @@
         <choose>
             <when test="user_ids.length > 0">
                 id IN
-                <foreach collection="user_ids" open="(" close=")" separator="," item="id">
+                <foreach collection="user_ids" item="id" open="(" close=")" separator=",">
                     #{id}
                 </foreach>
             </when>

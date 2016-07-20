@@ -218,8 +218,8 @@
                         <username>${dataSource.user}</username>
                         <password>${dataSource.password}</password>
                         <srcFiles>
-                            <srcFile>${project.basedir}/src/test/resources/schema.sql</srcFile>
-                            <srcFile>${project.basedir}/src/test/resources/insert_admin.sql</srcFile>
+                            <srcFile>${project.basedir}/src/main/resources/schema.sql</srcFile>
+                            <srcFile>${project.basedir}/src/main/resources/insert_admin.sql</srcFile>
                         </srcFiles>
                     </configuration>
                     <dependencies>

@@ -12,16 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class IndexController {
 
+    private static final String GREETING_VIEW = "greeting";
+
+    private static final String LOGIN_VIEW = "login";
+
+    private static final String FORM_ATTRIBUTE = "form";
+
+    private static final String USER_NAME_ATTRIBUTE = "userName";
+
+    private static final String HAS_ADMIN_ROLE_ATTRIBUTE = "hasAdminRole";
+
+    private static final String ROLE_ADMIN = "ROLE_ADMIN";
+
     @GetMapping("/")
     public String index(Model model, Authentication authentication) {
         if(isUserLoggedIn(authentication)) {
-            model.addAttribute("userName", authentication.getName());
-            model.addAttribute("hasAdminRole", isUserHasAdminRole(authentication));
-            return "greeting";
+            model.addAttribute(USER_NAME_ATTRIBUTE, authentication.getName());
+            model.addAttribute(HAS_ADMIN_ROLE_ATTRIBUTE, isUserHasAdminRole(authentication));
+            return GREETING_VIEW;
         }
         else {
-            model.addAttribute("form", new LoginForm());
-            return "login";
+            model.addAttribute(FORM_ATTRIBUTE, new LoginForm());
+            return LOGIN_VIEW;
         }
     }
 
@@ -35,7 +47,7 @@ public class IndexController {
         }
         else {
             return authentication.getAuthorities().stream()
-                .anyMatch(authority -> "ROLE_ADMIN".equals(authority.getAuthority()));
+                .anyMatch(authority -> ROLE_ADMIN.equals(authority.getAuthority()));
         }
     }
 }

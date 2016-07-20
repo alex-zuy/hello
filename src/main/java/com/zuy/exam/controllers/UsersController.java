@@ -35,6 +35,8 @@ public class UsersController {
 
     private static final String USER_ID_ATTRIBUTE = "userId";
 
+    private static final String ERROR_ATTRIBUTE = "error";
+
     @Autowired
     private UsersService usersService;
 
@@ -104,7 +106,7 @@ public class UsersController {
             usersService.deleteUsers(ids);
         }
         catch (UsersServiceException e) {
-            attributes.addFlashAttribute("error", e.getMessage());
+            attributes.addFlashAttribute(ERROR_ATTRIBUTE, e.getMessage());
         }
         return REDIRECT_TO_INDEX;
     }
@@ -116,7 +118,7 @@ public class UsersController {
         return user;
     }
 
-    private UserDataForm getUserDataForm(User user) {
+    private static UserDataForm getUserDataForm(User user) {
         final UserDataForm form = new UserDataForm();
         form.setLogin(user.getLogin());
         return form;

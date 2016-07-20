@@ -17,7 +17,7 @@ public class UsersService {
 
     private static final String ROLE_ADMIN = "ROLE_ADMIN";
 
-    private static final String AT_LEAST_ONE_ADMIN_SHOULD_EXIST_KEY =
+    private static final String AT_LEAST_ONE_ADMIN_SHOULD_EXIST =
         "users.service.at.least.one.admin.should.exist";
 
     private static final String USER_LOGIN_ALREADY_EXISTS =
@@ -69,7 +69,7 @@ public class UsersService {
         else {
             throw new UsersServiceException(
                 messageSource.getMessage(
-                    AT_LEAST_ONE_ADMIN_SHOULD_EXIST_KEY, null, Locale.getDefault()),
+                    AT_LEAST_ONE_ADMIN_SHOULD_EXIST, null, Locale.getDefault()),
                 null);
         }
     }
