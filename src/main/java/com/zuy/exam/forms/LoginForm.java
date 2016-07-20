@@ -1,9 +1,7 @@
-package com.zuy.exam.models;
+package com.zuy.exam.forms;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-
-import javax.validation.constraints.Size;
 
 public class LoginForm {
 

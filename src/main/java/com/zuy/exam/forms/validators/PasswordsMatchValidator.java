@@ -1,6 +1,6 @@
-package com.zuy.exam.models.validators;
+package com.zuy.exam.forms.validators;
 
-import com.zuy.exam.models.UserDataForm;
+import com.zuy.exam.forms.UserDataForm;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

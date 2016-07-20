@@ -1,4 +1,4 @@
-package com.zuy.exam.models.validators;
+package com.zuy.exam.forms.validators;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

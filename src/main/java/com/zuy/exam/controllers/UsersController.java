@@ -1,7 +1,7 @@
 package com.zuy.exam.controllers;
 
 import com.zuy.exam.entities.User;
-import com.zuy.exam.models.UserDataForm;
+import com.zuy.exam.forms.UserDataForm;
 import com.zuy.exam.services.UsersService;
 import com.zuy.exam.services.UsersService.UsersServiceException;
 import org.springframework.beans.factory.annotation.Autowired;

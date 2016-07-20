@@ -1,6 +1,6 @@
 package com.zuy.exam.controllers;
 
-import com.zuy.exam.models.LoginForm;
+import com.zuy.exam.forms.LoginForm;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
